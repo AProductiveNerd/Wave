@@ -11,7 +11,14 @@ body {
 }
 
 .wrapper {
-	background-image: url("./images/blue-waves.jpg");
+	background-image: linear-gradient(
+		to right top,
+		#05162b,
+		#17415f,
+		rgb(37 114 149 / 50%),
+		rgb(51 168 203 / 50%),
+		rgb(72 225 252 / 50%)
+	);
 	background-size: cover;
 	padding: 20px 30px;
 	display: flex;
