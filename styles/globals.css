@@ -9,3 +9,23 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
 		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+
+.wrapper {
+	background-image: url("./images/blue-waves.jpg");
+	background-size: cover;
+	padding: 20px 30px;
+	display: flex;
+	align-items: center;
+	border-radius: 2%;
+	max-width: 30rem;
+	width: 91.666667%;
+	height: max-content;
+	justify-content: center;
+	margin-bottom: 7rem;
+}
+
+@media (min-width: 640px) {
+	.wrapper {
+		width: 60%;
+	}
+}

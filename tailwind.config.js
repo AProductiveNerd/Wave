@@ -6,7 +6,16 @@ module.exports = {
 	],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
-		extend: {},
+		extend: {
+			backgroundImage: (theme) => ({
+				"blue-waves": "url('/images/blue-waves.jpg')",
+			}),
+			colors: {
+				theme: {
+					primary: "#155E75",
+				},
+			},
+		},
 	},
 	variants: {
 		extend: {},
