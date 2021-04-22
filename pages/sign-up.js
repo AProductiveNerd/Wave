@@ -5,6 +5,7 @@ import { useState } from "react";
 import { firebase } from "../libs/Firebase";
 import { doesUsernameExist } from "../utils/firebase";
 import { useRouter } from "next/router";
+import { LockClosedIcon } from "@heroicons/react/solid";
 
 export default function SignUp() {
 	const generator = new AvatarGenerator();
@@ -38,11 +39,13 @@ export default function SignUp() {
 
 				await firebase.firestore().collection("users").add({
 					avatar: avatar,
+					dateCreated: Date.now(),
+					emailAddress: emailAddress.toLowerCase(),
+					followRequests: [],
+					following: [],
+					fullName,
 					userId: createdUserResult.user.uid,
 					username: username.toLowerCase(),
-					fullName,
-					emailAddress: emailAddress.toLowerCase(),
-					dateCreated: Date.now(),
 				});
 
 				router.push("/");
@@ -59,117 +62,153 @@ export default function SignUp() {
 	};
 
 	return (
-		<div className="h-screen w-screen bg-gray-800 flex items-center justify-center">
+		<div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
 			<Head>
-				<title>Sign Up | Wave</title>
+				<title>Sign up | Wave</title>
 			</Head>
-			<span className="wrapper">
-				<div className="bg-white rounded p-5 w-full shadow-xl">
-					<div className="space-y-2">
-						<div className="space-y-1">
-							<h2 className="font-semibold text-2xl">Sign Up</h2>
-							<hr className="h-1 border-opacity-100 border-2 border-solid shadow-sm" />
-						</div>
-
-						{error && (
-							<p className="mb-4 text-xs text-red-500">{error}</p>
-						)}
-						<form
-							onSubmit={handleSignUp}
-							method="POST"
-							className="space-y-2 flex text-gray-500 font-bold flex-col"
-						>
+			<div className="max-w-md w-full space-y-8">
+				<div className="text-center">
+					<h1 className="text-6xl font-extrabold text-indigo-600">
+						Wave
+					</h1>
+					<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+						Create your account
+					</h2>
+				</div>
+				{error && (
+					<p className="mb-4 text-sm text-red-500 text-center font-semibold">
+						{error}
+					</p>
+				)}
+				<form
+					className="mt-8 space-y-6"
+					method="POST"
+					onSubmit={handleSignUp}
+				>
+					<input type="hidden" name="remember" defaultValue="true" />
+					<div className="rounded-md shadow-sm -space-y-px">
+						<div>
+							<label htmlFor="email-address" className="sr-only">
+								Full Name
+							</label>
 							<input
-								aria-label="Enter your username"
+								id="fullname"
+								name="fullname"
 								type="text"
-								className="text-sm text-gray-base w-full mr-3 px-4 h-11 border border-theme-background rounded"
+								autoComplete="name"
+								required
+								className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm h-11"
+								placeholder="Full Name"
+								onChange={({ target }) =>
+									setFullName(target.value)
+								}
+								value={fullName}
+							/>
+						</div>
+						<div>
+							<label htmlFor="email-address" className="sr-only">
+								Username
+							</label>
+							<input
+								id="username"
+								name="username"
+								type="text"
+								autoComplete="username"
+								required
+								className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm h-11"
 								placeholder="Username"
 								onChange={({ target }) =>
 									setUsername(target.value)
 								}
 								value={username}
 							/>
+						</div>
+						<div>
+							<label htmlFor="email-address" className="sr-only">
+								Email address
+							</label>
 							<input
-								aria-label="Enter your full name"
-								type="text"
-								className="text-sm text-gray-base w-full mr-3 px-4 h-11 border border-theme-background rounded"
-								placeholder="Full name"
-								onChange={({ target }) =>
-									setFullName(target.value)
-								}
-								value={fullName}
-							/>
-							<input
-								aria-label="Enter your email address"
-								className="text-sm text-gray-base w-full mr-3 px-4 h-11 border border-theme-background rounded"
-								type="text"
+								id="email-address"
+								name="email"
+								type="email"
+								autoComplete="email"
+								required
+								className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm h-11"
 								placeholder="Email address"
 								onChange={({ target }) =>
 									setEmailAddress(target.value)
 								}
 								value={emailAddress}
 							/>
+						</div>
+						<div>
+							<label htmlFor="password" className="sr-only">
+								Password
+							</label>
 							<input
-								aria-label="Enter your password"
-								className="text-sm text-gray-base w-full mr-3 px-4 h-11 border border-theme-background rounded"
+								id="password"
+								name="password"
 								type="password"
+								autoComplete="current-password"
+								required
+								className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm h-11"
 								placeholder="Password"
 								onChange={({ target }) =>
 									setPassword(target.value)
 								}
 								value={password}
 							/>
+						</div>
+					</div>
 
-							{!isInvalid && (
-								<div className="space-y-2">
-									<hr />
-									<div className="flex flex-col items-center justify-center">
-										<button
-											type="button"
-											onClick={() =>
-												setAvatar(
-													generator.generateRandomAvatar()
-												)
-											}
-											className="bg-theme-primary text-white w-full rounded h-11 font-bold border border-theme-background opacity-100"
-										>
-											Generate avatar
-										</button>
+					<div className="text-sm text-center flex justify-between flex-col items-center">
+						<button
+							type="button"
+							onClick={() =>
+								setAvatar(generator.generateRandomAvatar())
+							}
+							className="bg-white text-indigo-600 hover:text-indigo-700 w-full rounded h-11 font-bold border"
+						>
+							Generate avatar
+						</button>
+						<div>
+							{avatar !== "" ? (
+								<img
+									className="max-h-60 -mt-2"
+									alt="avatar"
+									src={avatar}
+								/>
+							) : null}
+						</div>
+					</div>
 
-										{avatar !== "" ? (
-											<img
-												className="max-h-60 -mt-2"
-												alt="avatar"
-												src={avatar}
-											/>
-										) : null}
-									</div>
-									{avatar !== "" ? (
-										<button
-											type="submit"
-											className="bg-theme-primary text-white w-full rounded h-8 font-bold"
-										>
-											Sign Up
-										</button>
-									) : null}
-								</div>
-							)}
-						</form>
-						<p className="text-sm mt-3 sm:mt-2">
+					{!isInvalid && avatar !== "" && (
+						<div>
+							<button
+								type="submit"
+								className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+							>
+								<span className="absolute left-0 inset-y-0 flex items-center pl-3">
+									<LockClosedIcon
+										className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+										aria-hidden="true"
+									/>
+								</span>
+								Sign Up
+							</button>
+						</div>
+					)}
+
+					<div className="text-sm text-center font-medium">
+						<p>
 							Already have an account?{` `}
-							<span className="font-semibold text-blue-500">
-								<Link
-									href="/sign-in"
-									aria-label="Link to Login"
-									title="Link to Login"
-								>
-									Login
-								</Link>
+							<span className="text-indigo-600 hover:text-indigo-500">
+								<Link href="/sign-in">Sign In</Link>
 							</span>
 						</p>
 					</div>
-				</div>
-			</span>
+				</form>
+			</div>
 		</div>
 	);
 }
