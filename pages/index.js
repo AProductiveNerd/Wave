@@ -15,16 +15,9 @@ export default function Home() {
 
 	useEffect(() => {
 		if (!loading && !user) {
-			router.push("/sign-up");
+			router.push("/sign-in");
 		}
 	}, [loading]);
-
-	const alreadyFollowing = async () => {
-		if (user) {
-			const currUser = await getUserByUserId(user?.uid);
-		}
-	};
-	alreadyFollowing();
 
 	return !loading ? (
 		<div>

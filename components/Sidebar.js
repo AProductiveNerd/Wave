@@ -25,75 +25,14 @@ export const Sidebar = () => {
 	};
 
 	return (
-		<div className="min-h-screen flex flex-col justify-between bg-gray-50">
-			<div className="pt-6 px-4 sm:px-6 lg:px-8">
-				<h1 className="text-5xl font-extrabold text-indigo-600">
-					Wave
-				</h1>
-				<div className="space-y-2 overflow-x-hidden max-h-[420px] mt-6">
-					<div className="bg-indigo-300 w-full p-2 font-semibold rounded">
-						Chat (unread)
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
-						Chat
-					</div>
-				</div>
-			</div>
-			<footer className="flex flex-row justify-between items-center py-6 px-4 sm:px-6 lg:px-8 bg-indigo-600 text-white">
+		<div className="min-h-screen bg-gray-50 relative flex items-center">
+			<header className="flex p-4 justify-between bg-indigo-600 absolute top-0 w-full">
 				<img
 					src={currUser?.avatar}
 					className="w-12 h-12"
 					alt="user-avatar"
 				/>
-				<div className="flex items-center">
+				<div className="flex items-center text-white">
 					<button onClick={addChat}>
 						<ChatAltIcon className="w-9 h-9" />
 					</button>
@@ -101,7 +40,63 @@ export const Sidebar = () => {
 						<DotsVerticalIcon className="w-9 h-9" />
 					</button>
 				</div>
-			</footer>
+			</header>
+			<div className="absolute w-full top-24 h-[80%] overflow-y-scroll">
+				<div className="bg-indigo-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat (unread)
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+				<div className="bg-gray-300 w-full p-4 font-semibold rounded border-b-2 border-gray-400">
+					Chat
+				</div>
+			</div>
 		</div>
 	);
 };
