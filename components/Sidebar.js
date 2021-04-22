@@ -1,8 +1,5 @@
-import {
-	ChatAltIcon,
-	DotsVerticalIcon,
-	StatusOnlineIcon,
-} from "@heroicons/react/outline";
+import { DotsVerticalIcon, ChatAltIcon } from "@heroicons/react/outline";
+
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import { getUserByUserId } from "./../utils/firebase";
@@ -19,32 +16,92 @@ export const Sidebar = () => {
 		fetchCurrUser();
 	}, [user]);
 
+	const addChat = () => {
+		const input = prompt(
+			"Please enter an email address for the user you wish to chat with"
+		);
+
+		if (!input) return null;
+	};
+
 	return (
-		<div className="flex flex-col h-screen w-max bg-theme-primary min-w-[250px]">
-			<header className="bg-gray-600">
-				<div className="flex flex-row justify-between items-center p-3">
-					<img src={currUser?.avatar} className="w-10 h-10" alt="" />
-					<div className="text-gray-300 flex flex-row items-center">
-						<button>
-							<ChatAltIcon className="w-8 h-8" />
-						</button>
-						<button>
-							<DotsVerticalIcon className="w-8 h-8" />
-						</button>
-						<button>
-							<StatusOnlineIcon className="w-8 h-8" />
-						</button>
+		<div className="min-h-screen flex flex-col justify-between bg-gray-50">
+			<div className="pt-6 px-4 sm:px-6 lg:px-8">
+				<h1 className="text-5xl font-extrabold text-indigo-600">
+					Wave
+				</h1>
+				<div className="space-y-2 overflow-x-hidden max-h-[420px] mt-6">
+					<div className="bg-indigo-300 w-full p-2 font-semibold rounded">
+						Chat (unread)
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
+					</div>
+					<div className="bg-gray-300 w-full p-2 font-semibold rounded">
+						Chat
 					</div>
 				</div>
-				<div className="bg-theme-primary p-3 border-b-[1px] border-gray-400">
-					<input
-						type="text"
-						name="search-chats"
-						className=" text-white rounded shadow p-2 w-full focus:outline-none text-sm bg-gray-600"
-						placeholder="Search..."
-					/>
+			</div>
+			<footer className="flex flex-row justify-between items-center py-6 px-4 sm:px-6 lg:px-8 bg-indigo-600 text-white">
+				<img
+					src={currUser?.avatar}
+					className="w-12 h-12"
+					alt="user-avatar"
+				/>
+				<div className="flex items-center">
+					<button onClick={addChat}>
+						<ChatAltIcon className="w-9 h-9" />
+					</button>
+					<button>
+						<DotsVerticalIcon className="w-9 h-9" />
+					</button>
 				</div>
-			</header>
+			</footer>
 		</div>
 	);
 };

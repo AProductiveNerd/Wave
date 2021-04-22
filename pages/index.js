@@ -26,14 +26,6 @@ export default function Home() {
 	};
 	alreadyFollowing();
 
-	const addChat = () => {
-		const input = prompt(
-			"Please enter an email address for the user you wish to chat with"
-		);
-
-		if (!input) return null;
-	};
-
 	return !loading ? (
 		<div>
 			<Head>
@@ -42,12 +34,6 @@ export default function Home() {
 			</Head>
 			<UserContext.Provider value={{ user }}>
 				<Sidebar />
-				<button
-					className="absolute bottom-14 right-8 bg-red-400 p-5 rounded-full"
-					onClick={addChat}
-				>
-					Add Chat
-				</button>
 			</UserContext.Provider>
 		</div>
 	) : (
