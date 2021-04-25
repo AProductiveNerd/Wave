@@ -5,8 +5,6 @@ import { fireAuth, firebase } from "../libs/Firebase";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
-import * as EmailValidator from "email-validator";
-import { getUserByUserId } from "./../utils/firebase";
 
 export default function Home() {
 	const [user, loading] = useAuthState(fireAuth);

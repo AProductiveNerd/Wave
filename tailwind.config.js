@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
 	mode: "jit",
 	purge: [
@@ -11,6 +13,7 @@ module.exports = {
 				"blue-waves": "url('/images/blue-waves.jpg')",
 			}),
 			colors: {
+				emerald: colors.emerald,
 				theme: {
 					primary: "#155E75",
 				},
