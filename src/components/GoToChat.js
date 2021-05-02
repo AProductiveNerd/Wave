@@ -18,11 +18,11 @@ export const GoTochat = ({ chat, user }) => {
 		funcy();
 	}, [displayName]);
 
-	if (mate?.lastSeen) {
-		// console.log("yes", mate.lastSeen);
-		// console.log(new Date(1619111106045));
-		console.log(formatRelative(mate.lastSeen, Date.now()));
-	}
+	// if (mate?.lastSeen) {
+	// 	// console.log("yes", mate.lastSeen);
+	// 	// console.log(new Date(1619111106045));
+	// 	console.log(formatRelative(mate.lastSeen, Date.now()));
+	// }
 	return (
 		<Link href={`/chat/${chat.docId}`}>
 			<div className="flex flex-row items-center cursor-pointer">
