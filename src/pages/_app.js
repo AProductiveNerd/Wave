@@ -1,12 +1,11 @@
-import Head from "next/head";
-import { Sidebar } from "../components/Sidebar";
+import "../styles/globals.css";
 import UserContext from "../context/UserContext";
 import { fireAuth, firebase } from "../libs/Firebase";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-export default function Home() {
+function MyApp({ Component, pageProps }) {
 	const [user, loading] = useAuthState(fireAuth);
 
 	const router = useRouter();
@@ -18,19 +17,12 @@ export default function Home() {
 	}, [loading]);
 
 	return !loading ? (
-		<div>
-			<Head>
-				<title>Wave</title>
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
-			<UserContext.Provider value={{ user }}>
-				<Sidebar />
-			</UserContext.Provider>
-		</div>
+		<UserContext.Provider value={{ user }}>
+			<Component {...pageProps} />
+		</UserContext.Provider>
 	) : (
 		<p>Loading...</p>
 	);
 }
 
-// teal 800
-// cyan
+export default MyApp;
