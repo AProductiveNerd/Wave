@@ -36,3 +36,24 @@ export const getUserByUserId = async (userId) => {
 
 	return user;
 };
+
+export const getUserChats = ({ user, userChats, setUserChats }) => {
+	firebase
+		.firestore()
+		.collection("chats")
+		.where("participants", "array-contains", user.email)
+		.onSnapshot((querySnapshot) => {
+			var chats = [];
+
+			querySnapshot.forEach((doc) => {
+				chats.push({
+					...doc.data(),
+					docId: doc.id,
+				});
+			});
+
+			if (JSON.stringify(chats) !== JSON.stringify(userChats)) {
+				setUserChats(chats);
+			}
+		});
+};

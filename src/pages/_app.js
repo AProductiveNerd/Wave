@@ -1,9 +1,10 @@
 import "../styles/globals.css";
 import UserContext from "../context/UserContext";
 import { fireAuth, firebase } from "../libs/Firebase";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
+import FirebaseContext from "../context/FirebaseContext";
 
 function MyApp({ Component, pageProps }) {
 	const [user, loading] = useAuthState(fireAuth);
@@ -18,7 +19,9 @@ function MyApp({ Component, pageProps }) {
 
 	return !loading ? (
 		<UserContext.Provider value={{ user }}>
-			<Component {...pageProps} />
+			<FirebaseContext.Provider value={{ firebase }}>
+				<Component {...pageProps} />
+			</FirebaseContext.Provider>
 		</UserContext.Provider>
 	) : (
 		<p>Loading...</p>

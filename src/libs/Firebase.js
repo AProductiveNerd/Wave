@@ -13,8 +13,11 @@ const config = {
 	measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+const { FieldValue } = Firebase.firestore;
+
 const firebase = !Firebase.apps.length
 	? Firebase.initializeApp(config)
 	: Firebase;
+
 const fireAuth = firebase.auth();
-export { firebase, fireAuth };
+export { firebase, fireAuth, FieldValue };
