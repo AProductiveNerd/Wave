@@ -45,7 +45,7 @@ export default function SignUp() {
 					following: [],
 					fullName,
 					userId: createdUserResult.user.uid,
-					username: username.toLowerCase(),
+					username: username,
 				});
 
 				router.push("/");

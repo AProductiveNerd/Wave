@@ -23,6 +23,19 @@ export const getUserByUsername = async (username) => {
 	}));
 };
 
+export const getUserByEmail = async (email) => {
+	const result = await firebase
+		.firestore()
+		.collection("users")
+		.where("emailAddress", "==", email)
+		.get();
+
+	return result.docs.map((item) => ({
+		...item.data(),
+		docId: item.id,
+	}));
+};
+
 export const getUserByUserId = async (userId) => {
 	const result = await firebase
 		.firestore()

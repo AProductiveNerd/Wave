@@ -4,17 +4,27 @@ import { useRouter } from "next/router";
 import FirebaseContext from "./../context/FirebaseContext";
 import UserContext from "./../context/UserContext";
 import { IndividualChat } from "./IndividualChat";
+import { getUserByUserId } from "../utils/firebase";
 
 export const ChatPanel = () => {
 	const router = useRouter();
 	const [input, setInput] = useState("");
 	const { user } = useContext(UserContext);
+	const [currUser, setCurrUser] = useState(null);
 	const { firebase } = useContext(FirebaseContext);
 	const [chats, setChats] = useState([]);
 
+	useEffect(() => {
+		const fetchCurrUser = async () => {
+			const ret = await getUserByUserId(user?.uid);
+			setCurrUser(ret[0]);
+		};
+		fetchCurrUser();
+	}, [user]);
+
 	const sendMessage = (e) => {
 		e.preventDefault();
-		firebase?.firestore().collection("users").doc(user?.uid).set(
+		firebase?.firestore().collection("users").doc(currUser?.docId).set(
 			{
 				lastSeen: FieldValue?.serverTimestamp(),
 			},
@@ -48,7 +58,6 @@ export const ChatPanel = () => {
 					querySnapshot.forEach((doc) => {
 						cities.push(doc.data());
 					});
-					console.log(cities);
 					setChats(cities);
 				});
 		}

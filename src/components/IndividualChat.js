@@ -4,7 +4,6 @@ import UserContext from "../context/UserContext";
 export const IndividualChat = ({ chat }) => {
 	const { user } = useContext(UserContext);
 
-	console.log(chat);
 	return (
 		<div>
 			<p

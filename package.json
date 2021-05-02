@@ -10,6 +10,7 @@
 	"dependencies": {
 		"@heroicons/react": "^1.0.1",
 		"@tailwindcss/forms": "^0.3.2",
+		"date-fns": "^2.21.1",
 		"email-validator": "^2.0.4",
 		"firebase": "^8.4.1",
 		"next": "10.1.3",
