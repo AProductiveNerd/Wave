@@ -1,19 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import { FieldValue } from "../libs/Firebase";
 import { useRouter } from "next/router";
-import FirebaseContext from "./../context/FirebaseContext";
-import UserContext from "./../context/UserContext";
-import { IndividualChat } from "./IndividualChat";
+import { useContext, useEffect, useState } from "react";
+import FirebaseContext from "../context/FirebaseContext";
+import UserContext from "../context/UserContext";
+import { FieldValue } from "../libs/Firebase";
 import { getUserByUserId } from "../utils/firebase";
 
-export const ChatPanel = () => {
-	const router = useRouter();
-	const [input, setInput] = useState("");
-	const { user } = useContext(UserContext);
-	const [currUser, setCurrUser] = useState(null);
+export const SendChat = () => {
 	const { firebase } = useContext(FirebaseContext);
-	const [chats, setChats] = useState([]);
-
+	const { user } = useContext(UserContext);
+	const router = useRouter();
+	const [currUser, setCurrUser] = useState(null);
+	const [input, setInput] = useState("");
 	const [mainHeight, setMainHeight] = useState(0);
 
 	useEffect(() => {
@@ -49,31 +46,28 @@ export const ChatPanel = () => {
 	};
 
 	useEffect(() => {
-		if (firebase) {
-			firebase
-				.firestore()
-				.collection("chats")
-				.doc(router.query.id)
-				.collection("messages")
-				.orderBy("timestamp", "asc")
-				.onSnapshot((querySnapshot) => {
-					var chats = [];
-					querySnapshot.forEach((doc) => {
-						chats.push({ ...doc.data(), chatId: doc.id });
-					});
-					setChats(chats);
-				});
-		}
-	}, [firebase]);
-
-	useEffect(() => {
 		setMainHeight(document.getElementById("chatPage").offsetHeight);
 	}, []);
-
 	return (
-		<div className="relative mx-auto w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12">
-	
-	
-		</div>
+		<form
+			className={` ${
+				mainHeight > window.innerHeight ? "sticky" : "absolute"
+			} bottom-0 w-full bg-indigo-600 p-2`}
+		>
+			<input
+				className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2"
+				value={input}
+				onChange={(e) => setInput(e.target.value)}
+				type="text"
+			/>
+			<button
+				hidden
+				disabled={!input}
+				type="submit"
+				onClick={sendMessage}
+			>
+				Send Message
+			</button>
+		</form>
 	);
 };
