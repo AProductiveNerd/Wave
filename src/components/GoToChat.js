@@ -1,12 +1,9 @@
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getUserByEmail } from "./../utils/firebase";
 import { formatRelative } from "date-fns";
-import FirebaseContext from "./../context/FirebaseContext";
 
 export const GoTochat = ({ chat, user }) => {
-	const { firebase } = useContext(FirebaseContext);
-
 	const displayName = chat.participants.filter(
 		(email) => email !== user.email
 	)[0];
@@ -28,9 +25,13 @@ export const GoTochat = ({ chat, user }) => {
 				<div className="ml-1 flex-1">
 					<p aria-label={displayName}>{mate?.username}</p>
 					<span className="flex font-light text-xs items-center text-gray-500 border-gray-300 border-solid border-b">
-						{formatRelative(
-							mate?.lastSeen.seconds * 1000,
-							Date.now()
+						{mate ? (
+							formatRelative(
+								mate?.lastSeen.seconds * 1000,
+								Date.now()
+							)
+						) : (
+							<p>Chat</p>
 						)}
 					</span>
 				</div>
