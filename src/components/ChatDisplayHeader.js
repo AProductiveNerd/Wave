@@ -1,4 +1,5 @@
 import { formatRelative } from "date-fns";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import FirebaseContext from "../context/FirebaseContext";
@@ -40,6 +41,9 @@ export const ChatDisplayHeader = () => {
 
 	return (
 		<div className="sticky top-0 w-full bg-indigo-600 p-2 mb-3 flex items-center flex-row">
+			<Head>
+				<title>Chat with {chatMateInfo?.username} | Wave</title>
+			</Head>
 			<img
 				src={chatMateInfo?.avatar}
 				alt="user-avatar"

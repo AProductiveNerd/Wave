@@ -10,8 +10,5 @@ export default function Home() {
 			</Head>
 			<Sidebar />
 		</div>
-	) ;
+	);
 }
-
-// teal 800
-// cyan
