@@ -21,15 +21,22 @@ export const GoTochat = ({ chat, user }) => {
 	return (
 		<Link href={`/chat/${chat.docId}`}>
 			<div className="flex flex-row items-center cursor-pointer">
-				<img src={mate?.avatar} alt="hui" className="w-12 h-12" />
+				<img
+					src={mate?.avatar}
+					alt="user-avatar"
+					className="w-12 h-12"
+				/>
 				<div className="ml-1 flex-1">
 					<p aria-label={displayName}>{mate?.username}</p>
 					<span className="flex font-light text-xs items-center text-gray-500 border-gray-300 border-solid border-b">
 						{mate ? (
-							formatRelative(
-								mate?.lastSeen.seconds * 1000,
-								Date.now()
-							)
+							<p>
+								Last seen {` `}
+								{formatRelative(
+									mate?.lastSeen.seconds * 1000,
+									Date.now()
+								)}
+							</p>
 						) : (
 							<p>Chat</p>
 						)}

@@ -31,7 +31,7 @@ export const DisplayChat = () => {
 
 	return (
 		<div
-			className="max-h-[94vh] space-y-4 overflow-y-scroll mx-auto w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12"
+			className="max-h-[90vh] space-y-4 overflow-y-scroll mx-auto w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 pb-3"
 			id="noScrollbar"
 		>
 			{chats.map((chat) => (
