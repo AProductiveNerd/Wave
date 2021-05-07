@@ -56,7 +56,7 @@ export const SendChat = () => {
 		>
 			<center className="w-full">
 				<input
-					className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12"
+					className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12 font-semibold"
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
 					type="text"
