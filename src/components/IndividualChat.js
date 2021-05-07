@@ -4,14 +4,20 @@ import UserContext from "../context/UserContext";
 export const IndividualChat = ({ chat }) => {
 	const { user } = useContext(UserContext);
 	return (
-		<div>
-			<p
+		<div
+			className={`${
+				user?.email === chat.user ? "justify-end" : "justify-start"
+			} flex text-white`}
+		>
+			<div
 				className={`${
-					user?.email === chat.user ? "text-right" : "text-left"
-				}`}
+					user?.email === chat.user
+						? "bg-blue-600 rounded-tr-none"
+						: "bg-gray-400 rounded-tl-none"
+				} w-max p-3 rounded-2xl max-w-xs`}
 			>
-				{chat.message}
-			</p>
+				<p>{chat.message}</p>
+			</div>
 		</div>
 	);
 };

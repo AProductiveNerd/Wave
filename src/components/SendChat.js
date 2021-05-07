@@ -54,17 +54,20 @@ export const SendChat = () => {
 				mainHeight > window.innerHeight ? "sticky" : "absolute"
 			} bottom-0 w-full bg-indigo-600 p-2`}
 		>
-			<input
-				className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2"
-				value={input}
-				onChange={(e) => setInput(e.target.value)}
-				type="text"
-			/>
+			<center className="w-full">
+				<input
+					className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12"
+					value={input}
+					onChange={(e) => setInput(e.target.value)}
+					type="text"
+				/>
+			</center>
 			<button
 				hidden
 				disabled={!input}
 				type="submit"
 				onClick={sendMessage}
+				className="hidden w-0"
 			>
 				Send Message
 			</button>

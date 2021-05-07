@@ -26,7 +26,10 @@ export const Sidebar = () => {
 	}, [userChats]);
 
 	return (
-		<div className="text-white min-h-screen relative" id="chatList">
+		<div
+			className="text-white min-h-screen relative bg-gray-50"
+			id="chatList"
+		>
 			<div>
 				<header className="bg-indigo-600 p-2 sticky top-0 w-full">
 					<div className="flex justify-between items-center">
