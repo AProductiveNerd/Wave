@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { FieldValue } from "../libs/Firebase";
+import { FieldValue } from "../../libs/Firebase";
 import { useRouter } from "next/router";
-import FirebaseContext from "./../context/FirebaseContext";
-import UserContext from "./../context/UserContext";
-import { IndividualChat } from "./IndividualChat";
-import { getUserByUserId } from "../utils/firebase";
+import FirebaseContext from "../../context/FirebaseContext";
+import UserContext from "../../context/UserContext";
+import { IndividualChat } from "../IndividualChat";
+import { getUserByUserId } from "../../utils/firebase";
 
 export const ChatPanel = () => {
 	const router = useRouter();

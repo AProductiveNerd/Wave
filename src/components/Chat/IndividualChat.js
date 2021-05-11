@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/UserContext";
 
 export const IndividualChat = ({ chat }) => {
 	const { user } = useContext(UserContext);
@@ -16,7 +16,11 @@ export const IndividualChat = ({ chat }) => {
 						: "bg-gray-400 rounded-tl-none"
 				} w-max p-3 rounded-2xl max-w-xs`}
 			>
-				<p>{chat.message}</p>
+				{chat.image === true ? (
+					<img src={chat.imageSrc} alt={chat.user} />
+				) : (
+					<p>{chat.message}</p>
+				)}
 			</div>
 		</div>
 	);

@@ -1,6 +1,6 @@
-import { DisplayChat } from "./../../components/DisplayChat";
-import { SendChat } from "./../../components/SendChat";
-import { ChatDisplayHeader } from "./../../components/ChatDisplayHeader";
+import { ChatDisplayHeader } from "./../../components/Chat/ChatDisplayHeader";
+import { DisplayChat } from "./../../components/Chat/DisplayChat";
+import { SendChat } from "./../../components/Chat/SendChat";
 
 export default function ChatDisplay() {
 	return (

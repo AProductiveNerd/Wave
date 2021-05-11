@@ -2,9 +2,9 @@ import { DotsVerticalIcon, SearchIcon } from "@heroicons/react/outline";
 import { getUserByUserId, getUserChats } from "./../utils/firebase";
 import { useContext, useEffect, useState } from "react";
 
-import { AddChat } from "./AddChat";
-import { GoTochat } from "./GoToChat";
 import UserContext from "../context/UserContext";
+import { AddChat } from "./Chat/AddChat";
+import { GoTochat } from "./GoToChat";
 
 export const Sidebar = () => {
 	const { user } = useContext(UserContext);

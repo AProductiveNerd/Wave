@@ -7,8 +7,8 @@ import {
 import { useContext, useEffect, useState } from "react";
 
 import { ChatAlt2Icon } from "@heroicons/react/solid";
-import UserContext from "../context/UserContext";
-import { getUserByUserId } from "./../utils/firebase";
+import UserContext from "../../context/UserContext";
+import { getUserByUserId } from "../../utils/firebase";
 
 export const ChatPanelSidebar = () => {
 	const { user } = useContext(UserContext);

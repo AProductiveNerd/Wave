@@ -1,5 +1,5 @@
 import * as EmailValidator from "email-validator";
-import FirebaseContext from "./../context/FirebaseContext";
+import FirebaseContext from "../../context/FirebaseContext";
 
 import { ChatAlt2Icon } from "@heroicons/react/solid";
 import { useContext, useEffect, useState } from "react";

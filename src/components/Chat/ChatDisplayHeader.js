@@ -2,9 +2,9 @@ import { formatRelative } from "date-fns";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import FirebaseContext from "../context/FirebaseContext";
-import UserContext from "../context/UserContext";
-import { getUserByEmail } from "./../utils/firebase";
+import FirebaseContext from "../../context/FirebaseContext";
+import UserContext from "../../context/UserContext";
+import { getUserByEmail } from "../../utils/firebase";
 
 export const ChatDisplayHeader = () => {
 	const { firebase } = useContext(FirebaseContext);

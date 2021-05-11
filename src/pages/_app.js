@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import UserContext from "../context/UserContext";
-import { fireAuth, firebase } from "../libs/Firebase";
+import { fireAuth, firebase, storage } from "../libs/Firebase";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
 
 	return !loading ? (
 		<UserContext.Provider value={{ user }}>
-			<FirebaseContext.Provider value={{ firebase }}>
+			<FirebaseContext.Provider value={{ firebase, storage }}>
 				<Component {...pageProps} />
 			</FirebaseContext.Provider>
 		</UserContext.Provider>

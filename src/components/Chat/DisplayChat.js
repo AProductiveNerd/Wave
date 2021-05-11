@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import FirebaseContext from "../context/FirebaseContext";
+import FirebaseContext from "../../context/FirebaseContext";
 import { useRouter } from "next/router";
 import { IndividualChat } from "./IndividualChat";
 
