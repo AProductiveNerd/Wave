@@ -10,7 +10,7 @@ export const SendChat = () => {
 	const { user } = useContext(UserContext);
 	const router = useRouter();
 	const [currUser, setCurrUser] = useState(null);
-	const [input, setInput] = useState(undefined);
+	const [input, setInput] = useState("");
 	const [mainHeight, setMainHeight] = useState(0);
 	const [image, setImage] = useState();
 
@@ -57,17 +57,18 @@ export const SendChat = () => {
 		?.addEventListener("paste", handlePaste);
 
 	function handlePaste(e) {
-		if (!input) {
+		if (input === "") {
 			var image = e.clipboardData.items[0].getAsFile();
-			if (image.type.indexOf("image") != -1) {
-				setImage(image);
+			if (image) {
+				if (image.type.indexOf("image") != -1) {
+					setImage(image);
+				}
 			}
 		}
 	}
 
 	const sendImage = (e) => {
 		e.preventDefault();
-		console.log("hi");
 		firebase?.firestore().collection("users").doc(currUser?.docId).set(
 			{
 				lastSeen: FieldValue?.serverTimestamp(),
@@ -87,7 +88,6 @@ export const SendChat = () => {
 					.child(`${userId}/${image?.name}`)
 					.getDownloadURL()
 					.then((url) => {
-						console.log("HOOOOOOO", url);
 						firebase
 							.firestore()
 							.collection("chats")
@@ -113,28 +113,37 @@ export const SendChat = () => {
 				mainHeight > window.innerHeight ? "sticky" : "absolute"
 			} bottom-0 w-full bg-indigo-600 p-2`}
 		>
-			<form>
-				<center className="w-full">
-					<div className="flex mx-auto justify-center">
-						<input
-							className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12 font-semibold"
-							id="pasteTarget"
-							value={input}
-							onChange={(e) => setInput(e.target.value)}
-							type="text"
-						/>
-					</div>
-				</center>
+			{!image && (
+				<form>
+					<center className="w-full">
+						<div className="flex mx-auto justify-center">
+							<input
+								className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12 font-semibold"
+								id="pasteTarget"
+								value={input}
+								onChange={(e) => setInput(e.target.value)}
+								type="text"
+							/>
+						</div>
+					</center>
+					<button
+						hidden
+						disabled={!input}
+						type="submit"
+						onClick={sendMessage}
+					>
+						Send Message
+					</button>
+				</form>
+			)}
+			{image && (
 				<button
-					hidden
-					disabled={!input}
-					type="submit"
-					onClick={sendMessage}
+					className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12 font-semibold"
+					onClick={sendImage}
 				>
-					Send Message
+					Send Image
 				</button>
-			</form>
-			{image && <button onClick={sendImage}>Send Image</button>}
+			)}
 		</div>
 	);
 };
