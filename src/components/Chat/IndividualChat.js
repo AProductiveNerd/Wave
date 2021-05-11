@@ -19,7 +19,7 @@ export const IndividualChat = ({ chat }) => {
 				{chat.image === true ? (
 					<img src={chat.imageSrc} alt={chat.user} />
 				) : (
-					<p>{chat.message}</p>
+					<p className="break-words">{chat.message}</p>
 				)}
 			</div>
 		</div>
