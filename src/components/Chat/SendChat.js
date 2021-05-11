@@ -113,19 +113,17 @@ export const SendChat = () => {
 				mainHeight > window.innerHeight ? "sticky" : "absolute"
 			} bottom-0 w-full bg-indigo-600 p-2`}
 		>
-			{!image && (
-				<form>
-					<center className="w-full">
-						<div className="flex mx-auto justify-center">
-							<input
-								className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12 font-semibold"
-								id="pasteTarget"
-								value={input}
-								onChange={(e) => setInput(e.target.value)}
-								type="text"
-							/>
-						</div>
-					</center>
+			<center className="w-full">
+				<form className={`${image && "hidden"}`}>
+					<div className="flex mx-auto justify-center">
+						<input
+							className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12 font-semibold"
+							id="pasteTarget"
+							value={input}
+							onChange={(e) => setInput(e.target.value)}
+							type="text"
+						/>
+					</div>
 					<button
 						hidden
 						disabled={!input}
@@ -135,15 +133,16 @@ export const SendChat = () => {
 						Send Message
 					</button>
 				</form>
-			)}
-			{image && (
+
 				<button
-					className="w-full outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12 font-semibold"
+					className={`${
+						!image && "hidden"
+					} outline-none border-none rounded-lg bg-gray-300 text-lg p-2 md:w-9/12 lg:w-8/12 font-semibold mx-auto`}
 					onClick={sendImage}
 				>
 					Send Image
 				</button>
-			)}
+			</center>
 		</div>
 	);
 };
