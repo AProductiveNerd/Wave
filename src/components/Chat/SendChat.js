@@ -100,6 +100,8 @@ export const SendChat = () => {
 								user: user?.email,
 								photoURL: currUser?.avatar,
 							});
+
+						setImage(null);
 					});
 			}
 		);
