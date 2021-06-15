@@ -17,6 +17,7 @@ export const IndividualChat = ({ chat }) => {
 				} w-max p-3 rounded-2xl max-w-xs`}
 			>
 				{chat.image === true ? (
+					// eslint-disable-next-line @next/next/no-img-element
 					<img src={chat.imageSrc} alt={chat.user} />
 				) : (
 					<p className="break-words">{chat.message}</p>

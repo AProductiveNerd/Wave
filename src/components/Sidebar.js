@@ -23,7 +23,7 @@ export const Sidebar = () => {
 		if (user) {
 			getUserChats({ user, userChats, setUserChats });
 		}
-	}, [userChats]);
+	}, [user, userChats]);
 
 	return (
 		<div

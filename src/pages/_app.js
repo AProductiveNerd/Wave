@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
 		if (!loading && !user) {
 			router.push("/sign-in");
 		}
-	}, [loading]);
+	}, [loading, router, user]);
 
 	return !loading ? (
 		<UserContext.Provider value={{ user }}>

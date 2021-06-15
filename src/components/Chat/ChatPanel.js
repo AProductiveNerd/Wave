@@ -64,16 +64,13 @@ export const ChatPanel = () => {
 					setChats(chats);
 				});
 		}
-	}, [firebase]);
+	}, [firebase, router.query.id]);
 
 	useEffect(() => {
 		setMainHeight(document.getElementById("chatPage").offsetHeight);
 	}, []);
 
 	return (
-		<div className="relative mx-auto w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12">
-	
-	
-		</div>
+		<div className="relative mx-auto w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12"></div>
 	);
 };

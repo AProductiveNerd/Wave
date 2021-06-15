@@ -37,13 +37,14 @@ export const ChatDisplayHeader = () => {
 		};
 
 		getChatmateInfo();
-	}, [currChatDoc]);
+	}, [currChatDoc, firebase, user?.email]);
 
 	return (
 		<div className="sticky top-0 w-full bg-indigo-600 p-2 mb-3 flex items-center flex-row">
 			<Head>
 				<title>Chat with {chatMateInfo?.username} | Wave</title>
 			</Head>
+			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img
 				src={chatMateInfo?.avatar}
 				alt="user-avatar"

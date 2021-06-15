@@ -19,8 +19,9 @@ export const GoTochat = ({ chat, user }) => {
 	}, [displayName]);
 
 	return (
-		<Link href={`/chat/${chat.docId}`}>
+		<Link href={`/chat/${chat.docId}`} passHref>
 			<div className="flex flex-row items-center cursor-pointer">
+				{/* eslint-disable-next-line @next/next/no-img-element */}
 				<img
 					src={mate?.avatar}
 					alt="user-avatar"

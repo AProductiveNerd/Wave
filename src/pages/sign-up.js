@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { AvatarGenerator } from "random-avatar-generator";
 import { useState } from "react";
@@ -173,7 +174,7 @@ export default function SignUp() {
 						</button>
 						<div>
 							{avatar !== "" ? (
-								<img
+								<Image
 									className="max-h-60 -mt-2"
 									alt="avatar"
 									src={avatar}

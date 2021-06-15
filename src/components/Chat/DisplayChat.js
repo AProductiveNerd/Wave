@@ -27,7 +27,7 @@ export const DisplayChat = () => {
 					setChats(chats);
 				});
 		}
-	}, [firebase]);
+	}, [firebase, router?.query.id]);
 
 	return (
 		<div

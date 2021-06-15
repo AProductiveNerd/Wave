@@ -109,7 +109,7 @@ export default function SignIn() {
 					)}
 				</form>
 				<div className="text-sm text-center">
-					Don't have an account?{` `}
+					{`Don't have an account? `}
 					<span className="font-medium text-indigo-600 hover:text-indigo-500">
 						<Link href="/sign-up">Sign Up</Link>
 					</span>
